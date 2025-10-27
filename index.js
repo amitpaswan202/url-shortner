@@ -128,7 +128,12 @@ import { nanoid } from "nanoid";
 import QRCode from "qrcode";
 import geoip from "geoip-lite";
 import useragent from "useragent";
-var DOMAIN = process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : "http://localhost:5000";
+const DOMAIN = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : process.env.REPLIT_DEV_DOMAIN
+  ? `https://${process.env.REPLIT_DEV_DOMAIN}`
+  : "http://localhost:5000";
+
 async function registerRoutes(app2) {
   app2.post("/api/shorten", async (req, res) => {
     try {
